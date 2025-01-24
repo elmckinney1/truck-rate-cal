@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Truck Rate Calculator</title>
+<link rel="manifest" href="manifest.json"> <!-- Link to PWA Manifest -->
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 20px;
+}
+input, select {
+margin: 10px;
+padding: 5px;
+font-size: 1em;
+}
+button {
+padding: 10px;
+font-size: 1.1em;
+background-color: #007BFF;
+color: white;
+border: none;
+cursor: pointer;
+}
+.result {
+margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>Truck Rate Calculator</h1>
+<div>
+<label for="from">From (Latitude, Longitude):</label>
+<input type="text" id="from" placeholder="e.g., 34.0522,-118.2437">
+</div>
+<div>
+<label for="to">To (Latitude, Longitude):</label>
+<input type="text" id="to" placeholder="e.g., 36.1699,-115.1398">
+</div>
+
+<div>
+<label for="fuelCost">Fuel per Gallon ($1.00 - $20.00):</label>
+<select id="fuelCost">
+<option value="1.00">1.00</option>
+<option value="2.00">2.00</option>
+<option value="3.00">3.00</option>
+<option value="4.00">4.00</option>
+<option value="5.00">5.00</option>
+<option value="6.00">6.00</option>
+<option value="20.00">20.00</option>
+</select>
+</div>
+
+<div>
+<label for="ratePerMile">Rate per Mile ($):</label>
+<input type="number" id="ratePerMile" value="1.00" step="0.01">
+</div>
+
+<div>
+<label for="driverPercentage">Driver Percentage (%):</label>
+<input type="number" id="driverPercentage" value="10" step="0.01">
+</div>
+
+<button onclick="calculateRate()">Calculate</button>
+
+<div class="result">
+<h3>Results:</h3>
+<p>Round Trip Miles: <span id="roundTripMiles">0</span></p>
+<p>Fuel Cost: <span id="fuelCostResult">$0.00</span></p>
+<p>Truck Rate: <span id="truckRate">$0.00</span></p>
+<p>Driver Pay: <span id="driverPay">$0.00</span></p>
+</div>
+
+<script src="app.js"></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('/service-worker.js').then(function() {
+console.log('Service Worker Registered');
+}).catch(function(error) {
+console.log('Service Worker Registration Failed', error);
+});
+}
+</script>
+
+</body>
+</html>
